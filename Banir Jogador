@@ -1,0 +1,34 @@
+$${
+ifmatches(%HIT%,PLAYER);
+    &player = %HITNAME%;
+    set(trojan);
+    log(" ");
+    log("&a[!] &7Ativando o &5&l/ban %&player% &a[!]");
+	log("&a[*] &7Criador: &6&lTrojan &a[*]");
+	log(" ");
+    ACHIEVEMENTGET("Programador: Trojan",27);
+    log(" ");
+    prompt(&c,$$?,"Deseja banir o jogador %&player% ?" S/N);
+    wait(250ms);
+	if((&c = "s")||(&c = "S"));
+		prompt(#d,$$?,"Deseja banir o %&player% por quantos dias?");
+		wait(250ms);
+		prompt(&m,$$?, "O jogador %&player% será banido por qual motivo?");
+		wait(250ms);
+		echo(/ban %&player% %#d% %&m%);
+		break;
+	elseif((&c != "s")||(&c != "S"));
+		log(" ");
+		log("&4[!] &7Você cancelou o banimento do jogador &6&l%&player% &4[!]");
+		log(" ");
+		unset(trojan);
+		stop;
+	endif;
+else;
+    unset(trojan);
+    log(" ");
+    log("&4[!] &7Nao foi identificado o jogador &4[!]");
+    log(" ");
+    stop;
+endif;
+}$$
